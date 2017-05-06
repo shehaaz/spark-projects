@@ -1,6 +1,6 @@
 # Spark projects
 
-## movie ratings
+## [movie ratings](https://github.com/shehaaz/spark-projects/tree/master/movie-ratings)
 Simple Spark Driver to analyze movie data from 
 https://grouplens.org/datasets/movielens/
 
