@@ -47,6 +47,15 @@ object PopularMovies extends App {
     val results = sortedMovies.collect()
 
     results.foreach(println)
+    /*
+      Prints out (count, movieID)
+      (18,811)
+      (18,1105)
+      (19,1248)
+      (19,138)
+      (19,894)
+      (19,424)
+     */
   }
 
 }
