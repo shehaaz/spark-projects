@@ -14,10 +14,14 @@ object PopularMovies extends App {
     //Read in each rating line
     val lines = sc.textFile(path = "ml-100k/u.data")
 
-    // Map to (movieID, 1) tuples. Initialized to 1.
+    /**
+      * Split each line out by tabs and extract the second field
+      * File format: userID, movieID, rating, timestamp
+      * Map to (movieID, 1) tuples. Initialized count to 1.
+      */
     val movies = lines.map(x => (x.split("\t")(1).toInt, 1))
 
-    // Count up all the 1's for each movie
+    // Count add up all the 1's for each movie
     /**
       * When called on a dataset of (K, V) pairs, returns a dataset of (K, V) pairs
       * where the values for each key are aggregated using the given reduce function func,
