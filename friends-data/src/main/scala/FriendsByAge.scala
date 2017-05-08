@@ -4,7 +4,10 @@ import org.apache.log4j._
 /** Compute the average number of friends by age in a social network. */
 object FriendsByAge {
   
-  /** A function that splits a line of input into (age, numFriends) tuples. */
+  /** A function that splits a line of input into (age, numFriends) tuples.
+    * id,name,age,friend_count
+    * 0,Will,33,385
+    * */
   def parseLine(line: String) = {
       // Split by commas
       val fields = line.split(",")
