@@ -35,6 +35,7 @@ object PopularMovies extends App {
       *  This adds the values together for each movieID.
       *  It does it in pairs, v1 + v2 for a unique k
       */
+    //val movieCounts = movies.reduceByKey((v1, v2) => v1 + v2)
     val movieCounts = movies.reduceByKey((v1, v2) => v1 + v2)
 
     // Flip (movieID, count) to (count, movieID)

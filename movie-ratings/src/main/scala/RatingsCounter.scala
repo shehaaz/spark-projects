@@ -17,11 +17,10 @@ object RatingsCounter extends App {
     /**
       * Split each line out by tabs and extract the third field
       * File format: userID, movieID, rating, timestamp
-      * Map to (movieID, 1) tuples. Initialized count to 1.
       */
     val ratings = lines.map(x => x.split("\t")(2))
 
-    //Count how many times a rating occurs
+    //Count how many times a rating occurs. countByValue is an action, so this triggers an action
     val results = ratings.countByValue()
 
     //Sort the resultig Map of (rating, count) tuples.
