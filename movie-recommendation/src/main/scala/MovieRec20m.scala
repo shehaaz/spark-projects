@@ -31,7 +31,7 @@ class MovieRec20m {
   }
 
   /** Our main function where the action happens */
-  val (movieNameDict, ratings, model, testMap) = {
+  val (movieNameDict, ratings, model) = {
 
     // Set the log level to only print errors
     Logger.getLogger("org").setLevel(Level.ERROR)
@@ -47,17 +47,7 @@ class MovieRec20m {
     val data = dataWithHeader.filter(row => row != header)
     var testMap: Map[String, String] = Map()
     val ratings: RDD[Rating] = data.map( x => x.split(',') ).map(x => {
-      if(x(2).toDouble > 3.0 && !testMap.contains(x(0))) {
-        testMap += (x(0) -> x(1))
-        if(testMap.get(x(0)) != None) {
-          println(s"key: ${x(0)},value:${movieNameDict(testMap.get(x(0)).get.toInt)}")
-        }
-      }
-      if(testMap.get(x(0)).getOrElse("") != x(1)) {
        Rating(user = x(0).toInt, product = x(1).toInt, rating = x(2).toDouble)
-      } else {
-        Rating(user = -1, product = -1, rating = 0.0)
-      }
     }).cache()
 
     // Build the recommendation model using Alternating Least Squares
@@ -68,7 +58,7 @@ class MovieRec20m {
 
     val model = ALS.train(ratings, rank, numIterations)
 
-    (movieNameDict, ratings, model, testMap)
+    (movieNameDict, ratings, model)
   }
 
   def getRecommendations(userID: String): User = {
@@ -92,19 +82,9 @@ class MovieRec20m {
     val recs = recommendations.toList.map(rating => movieNameDict(rating.product) + " score: " + rating.rating)
     val userData = myRatings.toList.map(rating => movieNameDict(rating.product.toInt) + ": " + rating.rating.toString)
 
-    val testMovie = testMap.get(userID).getOrElse("")
 
-    val testing = testMap.map(elem => model.recommendProducts(elem._1.toInt, 500).toList.map(_.product.toString).contains(elem._2)).toList
-    val valid = testing.filter(_ == true).length
-    val modelAccuracy =
-      if(testMap.size == 0) {
-      0.0
-    } else {
-      valid/testMap.toList.length
-    }
-
-    User(userID = userID, userData = userData, recs = recs, testMovie = testMovie, accuracy = modelAccuracy)
+    User(userID = userID, userData = userData, recs = recs)
   }
 
-  case class User(val userID: String, val userData: List[String], val recs: List[String], val testMovie: String, val accuracy: Double)
+  case class User(val userID: String, val userData: List[String], val recs: List[String])
 }

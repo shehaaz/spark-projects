@@ -16,7 +16,6 @@ object MovieRecService extends App {
   // needed for the future flatMap/onComplete in the end
   implicit val executionContext = actorSystem.dispatcher
   val config = ConfigFactory.load()
-  //val memcached = Memcached(Configuration("127.0.0.1:8000"))
 
   val movieModel = new MovieRec20m
   val mapper = new ObjectMapper() with ScalaObjectMapper
@@ -26,8 +25,6 @@ object MovieRecService extends App {
     get {
       pathPrefix("user" / RemainingPath) { id =>
         val user = movieModel.getRecommendations(userID = id.toString())
-        //val value = mapper.writeValueAsString(user)
-        //val result: Future[Option[String]] = memcached.get[String](id.toString())
         complete(mapper.writeValueAsString(user))
       }
     }
