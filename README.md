@@ -8,7 +8,6 @@ https://grouplens.org/datasets/movielens/
 ## Resources
 
 ```
-https://confluence/display/POS/Traveler+Profile
 https://www.slideshare.net/CasertaConcepts/analytics-week-recommendations-on-spark
 https://www.slideshare.net/MeerajKunnumpurath/machine-learning-by-example-apache-spark?qid=37fdb771-b86a-4fe3-a141-a4d9f9578528&v=&b=&from_search=8
 https://www.slideshare.net/imcinstitute/machine-learning-using-apache-spark-mllib?qid=1bf803f8-25c4-4f67-b238-5e2d1a4f150e&v=&b=&from_search=12
