@@ -21,5 +21,5 @@ https://databricks.com/blog/2015/09/22/large-scale-topic-modeling-improvements-t
 https://spark.apache.org/docs/2.1.0/mllib-clustering.html#latent-dirichlet-allocation-lda
 http://www.cs.cmu.edu/~cprose/TIST.pdf
 http://jialu.cs.illinois.edu/technical_notes/Topic_Model.pdf
-https://spark.apache.org/docs/2.1.0/mllib-guide.html
+http://spark.apache.org/docs/latest/sql-programming-guide.html
 ```
